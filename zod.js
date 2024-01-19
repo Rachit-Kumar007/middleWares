@@ -29,7 +29,26 @@ function validateInput2(obj){
 
 
 
-validateInput2({
-    email: "anshumangggd@gmail.com",
-    password: "12222221144"
-});
+// validateInput2({
+//     email: "anshumangggd@gmail.com",
+//     password: "12222221144"
+// });
+
+//example of fb:
+const express = require("express");
+const app = express();
+app.use(express.json());
+
+app.post("/login", (req, res) => {
+    const inp = req.body;
+
+    const response = validateInput2(req.body);
+    if(!response){
+        return res.status(404).json({
+            msg: "Invalid Inputs!"
+        });
+    }
+    return res.status(200).json({
+        msg: "email and password verified"
+    });
+})
